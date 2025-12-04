@@ -1,6 +1,9 @@
-namespace MyProject;
+namespace ACN_BTPBootcamp;
 
-entity Resources {
-    Name: String(50);
-    EID: String(50);
+entity Students {
+    key ID: UUID; //Unique  Identifier
+    firstName:  String;
+    lastName:   String;
+    email:      String;
+    age:        Integer;
 }
