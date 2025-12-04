@@ -1,4 +1,7 @@
 const cds = require('@sap/cds');
+const { InsertNumber } = require('../srv/setter/index');
+const { FetchResult } = require('../srv/getter/index');
+const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
 
 module.exports = async srv => {
     // Before creating students validate age
@@ -18,4 +21,15 @@ module.exports = async srv => {
     srv.before('DELETE', 'Students', req => {
         console.log(`Deleting student with ID: ${req.data.ID}`);
     });
+
+    srv.on('insertNumber', async (req) => {
+        const { first, second }  = req.data;
+        const result = await InsertNumber(first, second);
+        return result; // Returns a string
+    })
+
+    srv.on('getDivisionResult', async () => {
+        const result = await FetchResult();
+        return result;
+    })
 };
